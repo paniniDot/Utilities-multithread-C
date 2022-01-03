@@ -2,13 +2,13 @@ CFLAGS=-ansi -Wpedantic -Wall -Werror -D_THREAD_SAFE -D_REENTRANT -D_POSIX_C_SOU
 LIBRARIES=-lpthread 
 LFLAGS=
 
-all: .exe
+all: sorgente.exe
 
-.exe: .o DBGpthread.o
-	gcc ${LFLAGS} -o .exe .o DBGpthread.o ${LIBRARIES}
+sorgente.exe: sorgente.o DBGpthread.o
+	gcc ${LFLAGS} -o sorgente.exe sorgente.o DBGpthread.o ${LIBRARIES}
 
-.o: .c DBGpthread.h
-	gcc -c ${CFLAGS} .c 
+sorgente.o: sorgente.c DBGpthread.h
+	gcc -c ${CFLAGS} sorgente.c 
 
 DBGpthread.o: DBGpthread.c printerror.h
 	gcc -c ${CFLAGS} DBGpthread.c
@@ -18,7 +18,7 @@ DBGpthread.o: DBGpthread.c printerror.h
 clean: 
 	rm -f *.exe *.o *~ core
 
-run: .exe
-	./.exe   
+run: sorgente.exe
+	./sorgente.exe   
 
 
